@@ -45,6 +45,33 @@ The dataset used for this project is provided in the data directory. It contains
 - Annual Income: Annual income of the customer
 - Spending Score: Spending score assigned by the retail company
 
+## Data Cleaning and Pre-Processing
+
+The data is cleaned and has no missing or duplicate values. However, the redundant column, 'CustomerID' was dropped and the misspelled column, 'Genre' was renamed.
+
+```python
+# Drop CustomerID as it is not needed for clustering
+
+data = data.drop('CustomerID', axis=1)
+# Renaming the 'Genre' column to 'Gender'
+
+data=data.rename(columns={"Genre": "Gender"})
+```
+
+```python
+# Categorizing Age bracket
+def Age_group(Age):
+    if Age <= 19:
+        return "Teenager"
+    elif Age <= 35:
+        return "Youth"
+    elif Age <= 55:
+        return "Middle-Age"
+    else:
+        return "Elder"
+data['Age_group'] = data['Age'].apply(Age_group)
+```
+
 ## Exploratory Data Analysis (EDA)
 
 Before applying the clustering algorithm, an EDA was performed to understand the distribution of the data and identify any patterns.
@@ -68,7 +95,7 @@ The boxplot revealed that younger customers tend to have higher spending scores 
 
 - Examine relationships between different features
 
-Create scatter plots and pair plots to examine relationships between different features:
+We created scatter plots and pair plots to examine relationships between different features:
 
 ```python
 # Scatter plots
@@ -101,6 +128,18 @@ plt.show()
 - Customers with higher annual income do not necessarily have higher spending scores.
 - Certain age groups have higher spending scores, indicating more active spending behavior.
 
+```python
+from sklearn.preprocessing import LabelEncoder
+
+# Encode Gender as a numerical variable
+label_encoder = LabelEncoder()
+data['Gender'] = label_encoder.fit_transform(data['Gender'])
+
+# Drop 'Age_group as it is not needed for clustering
+data = data.drop('Age_group', axis=1)
+
+data.head()
+```
 
 ## Modeling
 
@@ -109,7 +148,8 @@ We used the K-Means clustering algorithm to segment the customers. The optimal n
 Example code for applying K-Means with 5 clusters:
 
 ```python
-# Determine optimal number of clusters
+from sklearn.cluster import KMeans
+# Determine the optimal number of clusters
 wcss = []
 for i in range(1, 11):
     kmeans = KMeans(n_clusters=i, init='k-means++', random_state=42)
