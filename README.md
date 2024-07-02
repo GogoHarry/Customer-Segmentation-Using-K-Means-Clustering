@@ -145,6 +145,8 @@ data.head()
 
 We used the K-Means clustering algorithm to segment the customers. The optimal number of clusters was determined using the elbow method and the silhouette score.
 
+**K-Means clustering:** is an unsupervised machine learning technique suitable for working with unlabelled data that lacks predefined categories or groups. The primary objective of this algorithm is to group similar data points, with the number of groups determined by the value of K. The algorithm follows an iterative approach and assigns each data point to one of the K groups based on the features that are provided.
+
 Example code for applying K-Means with 5 clusters:
 
 ```python
