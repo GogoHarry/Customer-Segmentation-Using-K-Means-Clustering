@@ -2,6 +2,9 @@
 
 ### Project Overview
 
+![Segment](https://github.com/GogoHarry/Customer-Segmentation-Using-K-Means-Clustering/assets/82883963/1329203c-4f5a-4754-a25c-13061733adb2)
+
+
 This project aims to segment customers based on their purchasing behavior and demographic information. The segmentation will help the retail company develop targeted marketing strategies, personalize product recommendations, and optimize pricing strategies.
 
 ## Table of Contents
@@ -143,7 +146,7 @@ data.head()
 
 ## Modeling
 
-We used the K-Means clustering algorithm to segment the customers. The optimal number of clusters was determined using the elbow method and the silhouette score.
+We used the K-Means clustering algorithm to segment the customers. The optimal number of clusters was determined using the elbow method and the silhouette score was used to evaluate the clustering performance.
 
 **K-Means clustering:** is an unsupervised machine learning technique suitable for working with unlabelled data that lacks predefined categories or groups. The primary objective of this algorithm is to group similar data points, with the number of groups determined by the value of K. The algorithm follows an iterative approach and assigns each data point to one of the K groups based on the features that are provided.
 
